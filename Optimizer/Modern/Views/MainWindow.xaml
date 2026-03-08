@@ -1,0 +1,60 @@
+<ui:FluentWindow x:Class="Optimizer.Modern.Views.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:models="clr-namespace:Optimizer.Modern.Models"
+                 Title="Optimizer Modern"
+                 Width="1080"
+                 Height="720"
+                 WindowStartupLocation="CenterScreen"
+                 ExtendsContentIntoTitleBar="True"
+                 WindowBackdropType="Mica"
+                 mc:Ignorable="d">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Width="36" Height="36" Source="/Resources/Assets/logo.png" Margin="0,0,12,0" />
+            <StackPanel>
+                <TextBlock Text="Optimizer" FontSize="22" FontWeight="SemiBold" />
+                <TextBlock Text="Rebuild em C# 14 + WPF UI 4.1 (Windows 11)" Opacity="0.75" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,20,0,20" Orientation="Horizontal">
+            <Button Command="{Binding LoadCommand}" Content="Atualizar templates" Margin="0,0,8,0" />
+            <Button Command="{Binding OpenTemplatesFolderCommand}" Content="Abrir pasta de templates" />
+        </StackPanel>
+
+        <ui:Card Grid.Row="2" Padding="16">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,0,12"
+                           Text="Templates detectados"
+                           FontSize="18"
+                           FontWeight="SemiBold" />
+                <ListView ItemsSource="{Binding Templates}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:OptimizationTemplate}">
+                            <StackPanel Margin="0,0,0,8">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding SourcePath}" Opacity="0.7" FontSize="12" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </DockPanel>
+        </ui:Card>
+
+        <StatusBar Grid.Row="3" Margin="0,16,0,0">
+            <StatusBarItem Content="{Binding Status}" />
+        </StatusBar>
+    </Grid>
+</ui:FluentWindow>
