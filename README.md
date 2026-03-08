@@ -46,6 +46,24 @@ Welcome to Optimizer, an advanced configuration utility designed to enhance your
 - Define custom commands for the run dialog
 - Support silent runs using a template file
 
+
+## Modernização (WPF / Windows 11 25H2+)
+
+Este repositório foi adaptado para uma base moderna em **C# 14 + .NET 10 + WPF**, utilizando **WPF-UI 4.1** e arquitetura **MVVM com Injeção de Dependência**.
+
+### O que mudou
+- Interface principal migrada para WPF com visual Fluent (Mica).
+- Bootstrap da aplicação via `HostBuilder` para DI e separação de responsabilidades.
+- Componentes legados de WinForms foram retirados do pipeline de compilação padrão para evitar incompatibilidades em versões recentes do Windows 11.
+- Novo script `build.ps1` para build local com log detalhado e publicação de executável portátil self-contained/single-file.
+
+### Build local
+```powershell
+./build.ps1 -Configuration Release -Runtime win-x64 -Clean
+```
+
+> Requer SDK do **.NET 10** instalado localmente.
+
 <center>
 <h2> ⬇️ Downloads</h2> 
 </center>
